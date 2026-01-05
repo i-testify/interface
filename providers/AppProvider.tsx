@@ -1,5 +1,8 @@
-import { Navbar, Sidebar } from '@/components/shared'
+import { LoginModal, Navbar, Sidebar } from '@/components/shared'
 import React, { ReactNode } from 'react'
+import QueryProvider from './QueryProvider'
+import ReduxProvider from './ReduxProvider'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 interface Props {
     children: ReactNode
@@ -7,17 +10,24 @@ interface Props {
 
 const AppProvider = ({ children }: Props) => {
     return (
-        <div className="flex h-svh flex-col overflow-hidden">
-            <Navbar />
+        <GoogleOAuthProvider clientId="<your_client_id>">
 
-            <main className="flex flex-1 overflow-hidden">
-                <Sidebar />
+            <QueryProvider>
+                <ReduxProvider>
+                    <div className="flex h-svh flex-col overflow-hidden">
+                        <Navbar />
+                        <main className="flex flex-1 overflow-hidden">
+                            <Sidebar />
 
-                <section className="flex-1 overflow-y-auto">
-                    {children}
-                </section>
-            </main>
-        </div>
+                            <section className="flex-1 overflow-y-auto">
+                                {children}
+                            </section>
+                        </main>
+                        <LoginModal />
+                    </div>
+                </ReduxProvider>
+            </QueryProvider>
+        </GoogleOAuthProvider>
     )
 }
 

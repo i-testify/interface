@@ -21,7 +21,7 @@ const Sidebar = () => {
                         const isActive = pathname === item.href
                         const Icon = item.icon
                         return (
-                            <Link href={item.href} key={item.id} className={cn('flex font-medium items-center gap-2.5 px-3 py-2 hover:bg-neutral-50 rounded-lg text-neutral-600 text-sm', isActive && "bg-neutral-200! text-neutral-800")}>
+                            <Link href={item.href} key={item.id} className={cn('flex font-medium items-center gap-2.5 px-3 py-2 hover:bg-neutral-100 rounded-lg text-neutral-600 text-sm', isActive && "bg-neutral-100! text-neutral-800")}>
                                 <Icon />
                                 <span>{item.label}</span>
                             </Link>

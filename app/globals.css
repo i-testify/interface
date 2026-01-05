@@ -44,6 +44,17 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-neutral-50: #697586;
+  --color-neutral-100: #EEF2F6;
+  --color-neutral-200: #E3E8EF;
+  --color-neutral-300: #CDD5DF;
+  --color-neutral-400: #697586;
+  --color-neutral-500: #697586;
+  --color-neutral-900: #121926;
+
+
+  --color-grey-100: #0D0D0D;
 }
 
 :root {
