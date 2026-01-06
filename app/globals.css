@@ -45,7 +45,7 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
 
-  --color-neutral-50: #697586;
+  --color-neutral-50: #F8FAFC;
   --color-neutral-100: #EEF2F6;
   --color-neutral-200: #E3E8EF;
   --color-neutral-300: #CDD5DF;
@@ -55,6 +55,13 @@
 
 
   --color-grey-100: #0D0D0D;
+
+  --color-success-60: #248F36;
+
+  --color-nameless-100: #D9D9D9;
+
+  --color-error-10: #FFF1F0;
+  --color-error-50: #FF5B4D;
 }
 
 :root {
@@ -134,3 +141,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+  body,
+  html {
+    background: var(--background);
+    color: var(--color);
+     font-family: var(--font-geist-sans), sans-serif;
+    color-scheme: dark light;
+    scroll-padding-block-start: 90px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
     Dialog,
     DialogContent,
@@ -13,24 +13,29 @@ import { cn } from '@/lib/utils'
 interface Props {
     isOpen: boolean
     onClose: () => void
-    title: string
-    description: string
+    title: ReactNode
+    description: ReactNode
     children: React.ReactNode
     contentClassName?: string
     titleClassName?: string
     descriptionClassName?: string
     headerClassName?: string
+    showCloseButton?: boolean
+    customHeader?: ReactNode
 }
 
 
-const CustomDialog = ({ isOpen, onClose, title, description, children, contentClassName, titleClassName, descriptionClassName, headerClassName }: Props) => {
+const CustomDialog = ({ isOpen, onClose, title, description, children, contentClassName, titleClassName, descriptionClassName, headerClassName, showCloseButton, customHeader }: Props) => {
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose} >
-            <DialogContent className={cn('p-12', contentClassName)}>
-                <DialogHeader className={cn('', headerClassName)}>
-                    <DialogTitle className={cn('', titleClassName)}>{title}</DialogTitle>
-                    <DialogDescription className={cn('', descriptionClassName)}>
+            <DialogContent className={cn('p-12', contentClassName)} showCloseButton={showCloseButton}>
+                <div>
+                    {customHeader}
+                </div>
+                <DialogHeader className={cn('gap-0', headerClassName)}  >
+                    <DialogTitle className={cn('text-[30px] font-bold', titleClassName)}>{title}</DialogTitle>
+                    <DialogDescription className={cn('text-base text-center font-normal text-neutral-600', descriptionClassName)}>
                         {description}
                     </DialogDescription>
                 </DialogHeader>

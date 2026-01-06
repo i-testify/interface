@@ -21,7 +21,6 @@ const appSlice = createSlice({
         toggleShowLoginModal: (state, action: PayloadAction<boolean>) => {
             state.showLoginModal = action.payload
         },
-
     },
 });
 

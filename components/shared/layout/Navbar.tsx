@@ -1,17 +1,16 @@
 'use client'
-import { Button } from '@/components/ui/button'
 import React from 'react'
-import { InputField } from '../InputField'
-import { ITestifyLogo } from '..'
+import { Button } from '@/components/ui/button'
+import { InputField, ITestifyLogo } from '..'
 import { Search } from 'lucide-react'
 import { useAppDispatch } from '@/Redux/store'
-import { toggleShowLoginModal } from '@/Redux/Slices/appSlice'
+import { toggleAuthModal } from '@/Redux/Slices/authSlice'
 
 const Navbar = () => {
     const dispatch = useAppDispatch()
 
     const handleLoginClick = () => {
-        dispatch(toggleShowLoginModal(true))
+        dispatch(toggleAuthModal())
     }
 
     return (

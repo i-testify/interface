@@ -1,4 +1,4 @@
-import { LoginModal, Navbar, Sidebar } from '@/components/shared'
+import { AuthModal, Navbar, Sidebar } from '@/components/shared'
 import React, { ReactNode } from 'react'
 import QueryProvider from './QueryProvider'
 import ReduxProvider from './ReduxProvider'
@@ -23,7 +23,7 @@ const AppProvider = ({ children }: Props) => {
                                 {children}
                             </section>
                         </main>
-                        <LoginModal />
+                        <AuthModal />
                     </div>
                 </ReduxProvider>
             </QueryProvider>
