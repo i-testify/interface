@@ -2,7 +2,7 @@
 import { PostCard } from '@/components/shared'
 import { TestimonyComposer } from '@/components/Testimony'
 import { Button } from '@/components/ui/button'
-import { Briefcase01, ChevronRightDouble, CoinsStacked03, Heart, HeartSquare, MedicalCross, Plane, Plus, TrendUp01 } from '@untitled-ui/icons-react'
+import { Briefcase01, ChevronDown, ChevronRightDouble, CoinsStacked03, Heart, HeartSquare, MedicalCross, Plane, Plus, Rows02, TrendUp01 } from '@untitled-ui/icons-react'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
@@ -23,20 +23,27 @@ const Index = () => {
     }
     return (
         <div className='max-w-5xl mx-auto pt-10 space-y-6'>
-            <header>
-                header
+            <header className='flex items-center gap-8'>
+                <span className='flex items-center gap-1 text-sm font-medium text-neutral-600'>
+                    Trending
+                    <ChevronDown />
+                </span>
+                <span className='flex items-center gap-1 text-sm font-medium text-neutral-600'>
+                    <Rows02 />
+                    <ChevronDown />
+                </span>
             </header>
             <div className='grid grid-cols-[1fr_343px] gap-6'>
                 <main className='w-full'>
-                    <div onClick={handleCreateTestimony} className='mb-6 w-full flex items-center justify-between px-4 border border-neutral-200  max-w-full! bg-neutral-50 rounded-2xl h-16!' >
+                    <button onClick={handleCreateTestimony} className='mb-6 w-full flex items-center justify-between px-4 border border-neutral-200  max-w-full! bg-neutral-50 rounded-2xl h-16!' >
                         <div className='flex items-center gap-2'>
                             <Image src='/assets/Avatars Default with Backdrop.svg' alt='smile icon' width={32} height={32} className='rounded-full mr-2' />
                             <span className='text-neutral-600 text-sm'>What are you grateful for?</span>
                         </div>
-                        <Button className='p-2 rounded-full size-7!'>
-                            <Plus />
-                        </Button>
-                    </div>
+                        <span className=' bg-black text-white flex items-center justify-center rounded-full size-7!'>
+                            <Plus className='size-4' />
+                        </span>
+                    </button>
                     <ul className='flex flex-col gap-4'>
                         <PostCard
                             author="{newusername}"
