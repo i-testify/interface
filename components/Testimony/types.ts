@@ -1,6 +1,9 @@
+import React from "react";
+
 export interface Fellowship {
     id: string
     name: string
+    icon: string
 }
 
 export interface Attachment {
@@ -18,7 +21,6 @@ export interface TestimonyDraft {
 }
 
 export interface TestifyComposerProps {
-    fellowships: Fellowship[]
     value: TestimonyDraft
     onChange: (value: TestimonyDraft) => void
     onPost: () => void

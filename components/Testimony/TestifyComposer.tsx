@@ -15,10 +15,9 @@ import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import { Button } from '../ui/button'
-import { X, XClose } from '@untitled-ui/icons-react'
+import { XClose } from '@untitled-ui/icons-react'
 
 export default function TestifyComposer({
-    fellowships,
     value,
     onChange,
     onPost,
@@ -86,7 +85,7 @@ export default function TestifyComposer({
             contentClassName='md:max-w-[650px] w-full p-5'
             customHeader={<div className="flex items-center justify-between">
                 <div className='flex items-center gap-6'>
-                    <Button className='cursor-pointer' variant="secondary" onClick={onClose}>
+                    <Button className='cursor-pointer size-9!' variant="secondary" onClick={onClose}>
                         <XClose className='size-6 ' />
                     </Button>
                     <h2 className="text-xl font-semibold">Testify!</h2>
@@ -107,9 +106,7 @@ export default function TestifyComposer({
                 {/* Header */}
 
                 <FellowshipSelect
-                    value={value.fellowshipId}
-                    onChange={(id) => update({ fellowshipId: id })}
-                    options={fellowships}
+
                 />
 
                 <TitleInput

@@ -80,10 +80,6 @@ const Index = () => {
                 </aside>
             </div>
             <TestimonyComposer
-                fellowships={[
-                    { id: '1', name: 'Victory Chapel' },
-                    { id: '2', name: 'Living Faith' }
-                ]}
                 value={draft}
                 onChange={setDraft}
                 onPost={() => console.log(draft)}

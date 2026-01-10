@@ -1,27 +1,83 @@
-// FellowshipSelect.tsx
-import { Fellowship } from './types'
+'use client'
 
-export default function FellowshipSelect({
-    options,
-    value,
-    onChange
-}: Readonly<{
-    options: Fellowship[]
-    value?: string
-    onChange: (id: string) => void
-}>) {
+import { Fellowship } from './types'
+import { ListBox } from '../shared'
+import { FC, useState } from 'react'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
+
+
+export default function FellowshipSelect() {
+    const [selectedFellowship, setSelectedFellowship] = useState<Fellowship | null>(null)
     return (
-        <select
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            className="w-fit px-4 py-2 rounded-full bg-gray-100 text-sm border focus:outline-none"
-        >
-            <option value="">Select Fellowship</option>
-            {options.map((f) => (
-                <option key={f.id} value={f.id}>
-                    {f.name}
-                </option>
-            ))}
-        </select>
+        <ListBox
+            list={fellowShips}
+            selectedItem={selectedFellowship}
+            idField="id"
+            onSelect={(value) => setSelectedFellowship(value)}
+            ListItem={ListItem}
+            placeholder='Select Fellowship'
+            classes={{
+                button: "max-w-[250px]",
+                container: "max-w-[250px] rounded-full bg-neutral-50 border-none",
+                options: "divide-0"
+            }}
+        />
     )
 }
+
+
+
+const ListItem: FC<{ item: Fellowship; className?: string }> = ({ item, className }) => {
+
+    return (
+        <div className={cn('flex w-full cursor-pointer items-center gap-2 text-base', className)}>
+            {
+                item.icon &&
+                <Image
+                    src={item.icon}
+                    width={20}
+                    height={20}
+                    alt={item.name}
+                />
+            }
+            <span className="block truncate text-neutral-900">{item.name}</span>
+        </div>
+    );
+};
+
+
+
+
+const fellowShips = [
+    {
+        id: '1',
+        name: 'Health/Healing',
+        icon: "/assets/medical-cross.svg",
+    },
+    {
+        id: '2',
+        name: 'Finances',
+        icon: "/assets/coins-stacked-03.svg",
+    },
+    {
+        id: '3',
+        name: 'Family',
+        icon: "/assets/heart-square.svg",
+    },
+    {
+        id: '4',
+        name: 'Job',
+        icon: "/assets/briefcase-01.svg",
+    },
+    {
+        id: '5',
+        name: 'Japa/Relocation',
+        icon: "/assets/plane.svg",
+    },
+    {
+        id: '6',
+        name: 'Marriage',
+        icon: "/assets/heart.svg",
+    },
+]
