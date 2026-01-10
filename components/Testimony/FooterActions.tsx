@@ -1,4 +1,7 @@
 // FooterActions.tsx
+import ShareIcon from "@/components/shared/Icons/mail-send-email--send-email-paper-airplane.svg"
+import ClockIcon from "@/components/shared/Icons/time_clock.svg"
+
 export default function FooterActions({
     onPost,
     onSchedule,
@@ -9,12 +12,17 @@ export default function FooterActions({
     disabled?: boolean
 }>) {
     return (
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col justify-between items-end h-full flex-1">
+            <p className="text-neutral-400 font-medium">
+                82/500
+            </p>
+            <div className="flex justify-between items-center gap-2">
             {onSchedule && (
                 <button
                     onClick={onSchedule}
-                    className="text-sm text-gray-500 hover:text-black"
+                        className="text-sm text-neutral-600 font-medium flex justify-center items-center gap-2"
                 >
+                        <ClockIcon />
                     Schedule for later
                 </button>
             )}
@@ -22,10 +30,13 @@ export default function FooterActions({
             <button
                 disabled={disabled}
                 onClick={onPost}
-                className="bg-black text-white px-6 py-2 rounded-full disabled:opacity-50"
+                    className="bg-black text-white px-4 py-1 rounded-full disabled:opacity-50 flex justify-center h-9 font-semibold text-sm items-center gap-2"
             >
+                    <ShareIcon />
+
                 Post
             </button>
+        </div>
         </div>
     )
 }

@@ -1,17 +1,17 @@
 // TestimonyEditor.tsx
+'use client'
+import { EditorContent, Editor } from '@tiptap/react'
+
 export default function TestimonyEditor({
-    value,
-    onChange
+    editor
 }: Readonly<{
-    value: string
-    onChange: (v: string) => void
+    editor: Editor | null
 }>) {
+    if (!editor) return null
+
     return (
-        <textarea
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder="Share your testimony here for the world to hear..."
-            className="w-full min-h-55 resize-none outline-none text-gray-700 placeholder-gray-400"
-        />
+        <div className="p-3">
+            <EditorContent editor={editor} placeholder='Share your testimony here for the world to hear...' />
+        </div>
     )
 }

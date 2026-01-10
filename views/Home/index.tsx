@@ -1,10 +1,26 @@
-import { InputField, PostCard } from '@/components/shared'
+'use client'
+import { PostCard } from '@/components/shared'
+import { TestimonyComposer } from '@/components/Testimony'
 import { Button } from '@/components/ui/button'
-import { Briefcase01, ChevronRightDouble, CoinsStacked01, CoinsStacked03, Heart, HeartSquare, MedicalCross, Plane, Plus, TrendUp01 } from '@untitled-ui/icons-react'
+import { Briefcase01, ChevronRightDouble, CoinsStacked03, Heart, HeartSquare, MedicalCross, Plane, Plus, TrendUp01 } from '@untitled-ui/icons-react'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
+
+import { toggleTestimonyModal } from '@/Redux/Slices/testimonySlice'
+import { useAppDispatch } from '@/Redux/store'
 
 const Index = () => {
+    const dispatch = useAppDispatch()
+    const [draft, setDraft] = useState({
+        fellowshipId: "",
+        title: '',
+        content: '',
+        showAvatar: true
+    })
+
+    const handleCreateTestimony = () => {
+        dispatch(toggleTestimonyModal())
+    }
     return (
         <div className='max-w-5xl mx-auto pt-10 space-y-6'>
             <header>
@@ -12,7 +28,7 @@ const Index = () => {
             </header>
             <div className='grid grid-cols-[1fr_343px] gap-6'>
                 <main className='w-full'>
-                    <div className='mb-6 w-full flex items-center justify-between px-4 border border-neutral-200  max-w-full! bg-neutral-50 rounded-2xl h-16!' >
+                    <div onClick={handleCreateTestimony} className='mb-6 w-full flex items-center justify-between px-4 border border-neutral-200  max-w-full! bg-neutral-50 rounded-2xl h-16!' >
                         <div className='flex items-center gap-2'>
                             <Image src='/assets/Avatars Default with Backdrop.svg' alt='smile icon' width={32} height={32} className='rounded-full mr-2' />
                             <span className='text-neutral-600 text-sm'>What are you grateful for?</span>
@@ -63,6 +79,17 @@ const Index = () => {
                     <Button variant="secondary" className='w-full mt-4 rounded-[14px]'>See All <ChevronRightDouble /> </Button>
                 </aside>
             </div>
+            <TestimonyComposer
+                fellowships={[
+                    { id: '1', name: 'Victory Chapel' },
+                    { id: '2', name: 'Living Faith' }
+                ]}
+                value={draft}
+                onChange={setDraft}
+                onPost={() => console.log(draft)}
+                onSaveDraft={() => console.log('save')}
+                onSchedule={() => console.log('schedule')}
+            />
         </div>
     )
 }

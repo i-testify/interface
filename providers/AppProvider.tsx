@@ -23,6 +23,7 @@ const AppProvider = ({ children }: Props) => {
                                 {children}
                                 <div className='h-16'></div>
                             </section>
+
                         </main>
                         <AuthModal />
                     </div>

@@ -3,11 +3,18 @@ export interface Fellowship {
     name: string
 }
 
+export interface Attachment {
+    id: string;
+    url: string;
+    name: string
+}
+
 export interface TestimonyDraft {
-    fellowshipId?: string
+    fellowshipId: string
     title: string
     content: string
     showAvatar: boolean
+    attachments?: Attachment[]
 }
 
 export interface TestifyComposerProps {

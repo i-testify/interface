@@ -14,7 +14,6 @@ const testimonySlice = createSlice({
         toggleTestimonyModal: (state) => {
             state.showTestimonyModal = !state.showTestimonyModal
         },
-
     },
 });
 
