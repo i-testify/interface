@@ -14,6 +14,8 @@ import { useEffect } from 'react'
 import { useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
+import { Button } from '../ui/button'
+import { X, XClose } from '@untitled-ui/icons-react'
 
 export default function TestifyComposer({
     fellowships,
@@ -75,26 +77,34 @@ export default function TestifyComposer({
         //     attachments: [...value.attachments, ...uploaded]
         // })
     }
+
     return (
         <CustomDialog
             isOpen={showTestimonyModal}
             onClose={onClose}
+            showCloseButton={false}
             contentClassName='md:max-w-[650px] w-full p-5'
-        >
-            <div className="w-full space-y-4">
-
-                {/* Header */}
-                <div className="flex items-center justify-between">
+            customHeader={<div className="flex items-center justify-between">
+                <div className='flex items-center gap-6'>
+                    <Button className='cursor-pointer' variant="secondary" onClick={onClose}>
+                        <XClose className='size-6 ' />
+                    </Button>
                     <h2 className="text-xl font-semibold">Testify!</h2>
+                </div>
                     {onSaveDraft && (
                         <button
                             onClick={onSaveDraft}
-                            className="text-sm text-gray-500 hover:text-black"
+                        className="text-sm text-neutral-600 font-medium hover:text-black"
                         >
                             Drafts
                         </button>
                     )}
                 </div>
+}
+        >
+            <div className="w-full space-y-4">
+
+                {/* Header */}
 
                 <FellowshipSelect
                     value={value.fellowshipId}
