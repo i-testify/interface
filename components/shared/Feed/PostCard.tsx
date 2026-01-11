@@ -36,8 +36,8 @@ export default function PostCard({
             <Image
                         src={avatarUrl}
                         alt={author}
-                        width={40}
-                        height={40}
+                width={32}
+                height={32}
                 className="rounded-full shrink-0"
                     />
             <section>
