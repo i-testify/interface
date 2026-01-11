@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { MoonStarIcon } from 'lucide-react'
-import { HeartHand, InfoCircle } from '@untitled-ui/icons-react'
+import { ChevronRight, HeartHand, InfoCircle } from '@untitled-ui/icons-react'
 
 const Sidebar = () => {
     const pathname = usePathname()
@@ -34,7 +34,7 @@ const Sidebar = () => {
             </ul>
 
                 <section className='border-y py-4 px-5 mt-4'>
-                    <h4 className='p-2'>Fellowships</h4>
+                    <h4 className='p-2 flex items-center gap-2.5'>Fellowships <ChevronRight /> </h4>
                 </section>
 
                 <section className='px-4 py-4'>
