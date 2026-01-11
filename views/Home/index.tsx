@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 
 import { toggleTestimonyModal } from '@/Redux/Slices/testimonySlice'
 import { useAppDispatch } from '@/Redux/store'
+import Link from 'next/link'
 
 const Index = () => {
     const dispatch = useAppDispatch()
@@ -45,6 +46,7 @@ const Index = () => {
                         </span>
                     </button>
                     <ul className='flex flex-col gap-4'>
+                        <Link href={`/t/1`}>
                         <PostCard
                             author="{newusername}"
                             collaborators="{anotherusername}"
@@ -54,7 +56,10 @@ const Index = () => {
                             excerpt="There was so much tension between me and my husband that we barely spoke for weeks..."
                             imageUrl="/assets/Image.jpg"
                             category="Health & Healing"
-                        />
+                                className='pt-4'
+                            />
+                        </Link>
+                        <Link href={`/t/2`}>
                         <PostCard
                             author="{newusername}"
                             avatarUrl="/assets/Avatars Default with Backdrop.svg"
@@ -62,7 +67,9 @@ const Index = () => {
                             title="I got the job!!!"
                             excerpt="There was so much tension between me and my husband that we barely spoke for weeks..."
                             category="Health & Healing"
-                        />
+                                className='pt-4'
+                            />
+                        </Link>
 
 
                     </ul>

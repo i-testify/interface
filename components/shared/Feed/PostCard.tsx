@@ -5,6 +5,7 @@ import CelebrateIcon from "@/components/shared/Icons/celebrate-icon.svg"
 import ChatCircleIcon from "@/components/shared/Icons/chat-circle.svg"
 import KeyIcon from "@/components/shared/Icons/key-01.svg"
 import { cn } from "@/lib/utils"
+import { MedicalCross } from "@untitled-ui/icons-react"
 
 type PostCardProps = {
     readonly author: string
@@ -15,6 +16,7 @@ type PostCardProps = {
     readonly excerpt: string
     readonly imageUrl?: string
     readonly category?: string
+    readonly className?: string
 }
 
 export default function PostCard({
@@ -26,19 +28,23 @@ export default function PostCard({
     excerpt,
     imageUrl,
     category,
+    className
 }: PostCardProps) {
     return (
-        <article className="w-full max-w-full border-t  bg-white p-4 ">
+        <article className={cn("w-full max-w-full flex items-start gap-2 border-t  bg-white ", className)}>
             {/* Header */}
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <Image
+            <Image
                         src={avatarUrl}
                         alt={author}
                         width={40}
                         height={40}
-                        className="rounded-full"
+                className="rounded-full shrink-0"
                     />
+            <section>
+
+
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
 
                     <div className="text-sm flex gap-2 items-center">
                         <span className="font-medium text-gray-900">
@@ -51,13 +57,15 @@ export default function PostCard({
                     </div>
                 </div>
 
-                <button className="text-gray-400 hover:text-gray-600">•••</button>
+                    <button className="text-gray-400 hover:text-gray-600 rotate-90">•••</button>
             </div>
 
             {/* Category */}
             {category && (
                 <div className="mt-3 flex items-center gap-2 text-sm text-green-600">
-                    <span className="text-lg">+</span>
+                        <span className="text-lg">
+                            <MedicalCross />
+                        </span>
                     <span>{category}</span>
                 </div>
             )}
@@ -89,6 +97,7 @@ export default function PostCard({
                 <ActionButton icon={<KeyIcon />} className="px-1 py-1 size-7!" />
                 <ActionButton label="Share" icon={<ShareIcon />} />
             </div>
+            </section>
         </article>
     )
 }
