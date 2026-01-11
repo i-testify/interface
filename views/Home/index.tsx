@@ -23,7 +23,7 @@ const Index = () => {
         dispatch(toggleTestimonyModal())
     }
     return (
-        <div className='max-w-5xl mx-auto pt-10 space-y-6'>
+        <div className='max-w-5xl mx-auto space-y-6'>
             <header className='flex items-center gap-8'>
                 <span className='flex items-center gap-1 text-sm font-medium text-neutral-600'>
                     Trending

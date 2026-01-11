@@ -26,6 +26,14 @@ export const AppRoutes = {
         href: "/legal",
         icon: ""
     },
+    About: {
+        href: "/about",
+        icon: ""
+    },
+    Donation: {
+        href: "/donations",
+        icon: ""
+    },
 }
 
 export const AppLinks = [

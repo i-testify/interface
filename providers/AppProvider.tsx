@@ -19,7 +19,7 @@ const AppProvider = ({ children }: Props) => {
                         <main className="flex flex-1 overflow-hidden">
                             <Sidebar />
 
-                            <section className="flex-1 overflow-y-auto px-4 relative lg:px-10">
+                            <section className="flex-1 overflow-y-auto px-4 relative lg:px-10 py-10">
                                 {children}
                                 <div className='h-16'></div>
                             </section>

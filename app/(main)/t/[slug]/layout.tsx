@@ -6,7 +6,7 @@ interface Props {
 
 const DetailsLayout = ({ children }: Props) => {
     return (
-        <div className='max-w-139.5 pt-10 mx-auto px-4 lg:px-10'>{children}</div>
+        <div className='max-w-139.5 mx-auto px-4 lg:px-10'>{children}</div>
     )
 }
 
