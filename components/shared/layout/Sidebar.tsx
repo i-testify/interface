@@ -40,7 +40,7 @@ const Sidebar = () => {
                 <section className='px-4 py-4'>
                     <Link href={AppRoutes.About.href} className={cn('flex font-medium items-center gap-2.5 px-3 py-2 hover:bg-neutral-100 rounded-lg text-neutral-600 text-sm',)} >
                         <InfoCircle />
-                        <span>About Itestify</span>
+                        <span>About iTestify</span>
                     </Link>
                     <Link href={AppRoutes.Donation.href} className={cn('flex font-medium items-center gap-2.5 px-3 py-2 hover:bg-neutral-100 rounded-lg text-neutral-600 text-sm',)}>
                         <HeartHand />
