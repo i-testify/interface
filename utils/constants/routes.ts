@@ -49,12 +49,6 @@ export const AppLinks = [
         icon: AppRoutes.Discover.icon,
         label: "Discover"
     },
-    {
-        id: 3,
-        href: AppRoutes.Trending.href,
-        icon: AppRoutes.Trending.icon,
-        label: "Trending"
-    },
 ]
 
 export const FooterLinks = [
