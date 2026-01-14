@@ -1,11 +1,14 @@
 // components/PostCard.tsx
+'use client'
 import Image from "next/image"
 import ShareIcon from "@/components/shared/Icons/ShareIcon.svg"
 import CelebrateIcon from "@/components/shared/Icons/celebrate-icon.svg"
 import ChatCircleIcon from "@/components/shared/Icons/chat-circle.svg"
 import KeyIcon from "@/components/shared/Icons/key-01.svg"
 import { cn } from "@/lib/utils"
-import { MedicalCross } from "@untitled-ui/icons-react"
+import { Bookmark, EyeOff, Flag03, MedicalCross } from "@untitled-ui/icons-react"
+import CustomDropDown from "../CustomDropDown"
+import { useState } from "react"
 
 type PostCardProps = {
     readonly author: string
@@ -30,8 +33,14 @@ export default function PostCard({
     category,
     className
 }: PostCardProps) {
+    const [action, setAction] = useState<string | null>(null)
+
+    const handleAction = (action: string) => {
+        console.log(action)
+
+    }
     return (
-        <article className={cn("w-full max-w-full flex items-start gap-2 border-t  bg-white ", className)}>
+        <article className={cn("w-full max-w-full flex items-start gap-2 border-t  ", className)}>
             {/* Header */}
             <Image
                         src={avatarUrl}
@@ -47,7 +56,7 @@ export default function PostCard({
                     <div className="flex items-center gap-3">
 
                     <div className="text-sm flex gap-2 items-center">
-                        <span className="font-medium text-gray-900">
+                            <span className="font-medium text-neutral-900">
                             {author}
                             {collaborators && (
                                 <span className="text-gray-500"> and {collaborators}</span>
@@ -57,7 +66,35 @@ export default function PostCard({
                     </div>
                 </div>
 
-                    <button className="text-gray-400 hover:text-gray-600 rotate-90">•••</button>
+
+                    <CustomDropDown
+                        value={action}
+                        align="end"
+                        onChange={handleAction}
+                        items={[
+                            {
+                                value: "save",
+                                icon: <Bookmark />,
+                                label: <>Save</>,
+
+                            },
+                            {
+                                value: "hide",
+                                icon: <EyeOff />,
+                                label: <>Hide</>,
+                            },
+                            {
+                                value: "report",
+                                icon: <Flag03 />,
+                                label: <>Report</>,
+                            },
+                        ]}
+                        renderTrigger={(selected) => (
+                            <button className="text-gray-400 hover:text-gray-600 rotate-90 relative z-50">•••</button>
+                        )}
+                        contentClassName="min-w-[180px]"
+                    />
+
             </div>
 
             {/* Category */}
@@ -71,7 +108,7 @@ export default function PostCard({
             )}
 
             {/* Title */}
-            <h2 className="mt-3 text-lg font-semibold text-gray-900">{title}</h2>
+                <h2 className="mt-3 text-lg font-semibold text-neutral-800">{title}</h2>
 
             {/* Image */}
             {imageUrl && (
@@ -88,14 +125,14 @@ export default function PostCard({
             )}
 
             {/* Excerpt */}
-            <p className="mt-3 text-sm text-gray-600 line-clamp-3">{excerpt}</p>
+                <p className="mt-3 text-sm text-neutral-500 line-clamp-3">{excerpt}</p>
 
             {/* Actions */}
             <div className="mt-4 flex items-center gap-2">
-                <ActionButton label="Celebrate" icon={<CelebrateIcon />} />
-                <ActionButton icon={<ChatCircleIcon />} />
-                <ActionButton icon={<KeyIcon />} className="px-1 py-1 size-7!" />
-                <ActionButton label="Share" icon={<ShareIcon />} />
+                    <ActionButton label="Celebrate" icon={<CelebrateIcon className="text-neutral-700 dark:text-neutral-700" />} />
+                    <ActionButton icon={<ChatCircleIcon className="text-neutral-700 dark:text-neutral-700" />} />
+                    <ActionButton icon={<KeyIcon className="text-neutral-700 dark:text-neutral-700" />} className="px-1 py-1 size-7!" />
+                    <ActionButton label="Share" icon={<ShareIcon className="text-neutral-700 dark:text-neutral-700" />} />
             </div>
             </section>
         </article>
@@ -104,7 +141,7 @@ export default function PostCard({
 
 function ActionButton({ label, icon, className }: { readonly label?: string; readonly icon?: React.ReactNode; readonly className?: string }) {
     return (
-        <button className={cn(`flex items-center justify-center cursor-pointer gap-1 rounded-full border border-gray-200 px-4 py-1 text-sm text-gray-700 h-7! hover:bg-gray-50`, className)}>
+        <button className={cn(`flex items-center justify-center cursor-pointer gap-1 rounded-full border px-4 py-1 text-sm text-neutral-700 h-7! hover:bg-neutral-50`, className)}>
             {icon}
             {label}
         </button>
