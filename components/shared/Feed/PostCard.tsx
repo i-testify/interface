@@ -23,6 +23,8 @@ type PostCardProps = {
     readonly category?: string
     readonly className?: string
     readonly cardType?: CardType
+    readonly imageClassName?: string
+    readonly bodyClassName?: string
 }
 
 export default function PostCard({
@@ -35,6 +37,8 @@ export default function PostCard({
     imageUrl,
     category,
     className,
+    imageClassName,
+    bodyClassName,
     cardType
 }: PostCardProps) {
     const isCompact = cardType === "compact"
@@ -128,7 +132,7 @@ export default function PostCard({
 
             {/* Title */}
                 <h2 className="mt-3 text-lg font-semibold text-neutral-800">{title}</h2>
-                <div className="max-w-[70%]">
+                <div className={cn("max-w-[70%]", bodyClassName)}>
 
 
             {/* Image */}
@@ -139,7 +143,7 @@ export default function PostCard({
                         alt={title}
                         width={518}
                         height={420}
-                        className="h-auto w-full object-cover max-w-129.5 rounded-lg"
+                                className={cn("h-auto w-full object-cover max-w-129.5 rounded-lg", imageClassName)}
                         priority
                     />
                 </div>

@@ -1,16 +1,18 @@
 'use client'
-import React, { useState } from 'react'
+import React, { Activity, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CustomDropDown, InputField, ITestifyLogo } from '..'
 import { Search } from 'lucide-react'
-import { useAppDispatch } from '@/Redux/store'
+import { useAppDispatch, useAppSelector } from '@/Redux/store'
 import { toggleAuthModal } from '@/Redux/Slices/authSlice'
 import AlertIcon from '@/components/shared/Icons/interface-alert-alarm-bell-2--alert-bell-ring-notification-alarm.svg'
 import { ChevronDown, User03 } from '@untitled-ui/icons-react'
+import Image from 'next/image'
 
 
 
 const Navbar = () => {
+    const { showNavTestimonyButton } = useAppSelector((state) => state.app)
     const [accountAction, setAccountAction] = useState<"profile" | "logout" | null>(null)
 
     const username = "@samsontobie"
@@ -27,10 +29,23 @@ const Navbar = () => {
 
     return (
         <div className='border-b  w-full min-h-18 px-8 flex justify-between items-center gap-4'>
+            <div className='flex-1'>
+
             <ITestifyLogo />
+            </div>
+            <div className='flex-1'>
+
             <InputField placeholder="Search for anything..." className='bg-neutral-100 h-10' preIcon={<Search />} />
-            <section className='flex items-center gap-2'>
-                <button className='rounded-full border size-10 flex items-center justify-center'>
+            </div>
+            <section className='flex items-center gap-2 flex-1'>
+                <Activity mode={showNavTestimonyButton ? "visible" : "hidden"}  >
+                    <Button className='rounded-[14px]'>
+                        <Image src="/assets/fellowships/write_circle.svg" alt="edit--pen" height={14} width={14} />
+                        Share your testimony
+                    </Button>
+                </Activity>
+
+                <button className='rounded-full border size-10 shrink-0 flex items-center justify-center'>
                     <AlertIcon className='text-neutral-800' />
                 </button>
                 <User03 />

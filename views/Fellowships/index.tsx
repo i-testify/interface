@@ -1,4 +1,4 @@
-import { FellowshipBanner, FellowshipHeader } from '@/components/Fellowships'
+import { AboutFellowship, FellowshipBanner, FellowshipBody, FellowshipHeader } from '@/components/Fellowships'
 import React from 'react'
 
 interface Props {
@@ -11,6 +11,11 @@ const FellowshipView = ({ fellowshipId }: Props) => {
             <FellowshipBanner />
             <section className='max-w-app-main mx-auto'>
                 <FellowshipHeader fellowshipId={fellowshipId} />
+                <div className="grid grid-cols-[1fr_350px] gap-8 mt-8">
+                    <FellowshipBody />
+                    <AboutFellowship />
+                </div>
+
             </section>
         </div>
     )
