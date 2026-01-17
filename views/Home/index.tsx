@@ -9,11 +9,12 @@ import React, { useState } from 'react'
 import { toggleTestimonyModal } from '@/Redux/Slices/testimonySlice'
 import { useAppDispatch } from '@/Redux/store'
 import Link from 'next/link'
+import { CardType } from '@/components/shared/Feed/PostCard'
 
 
 const Index = () => {
     const [sortBy, setSortBy] = useState<"trending" | "new" | "top">("trending")
-    const [layout, setLayout] = useState<"card" | "compact">("card")
+    const [layout, setLayout] = useState<CardType>("card")
 
     const dispatch = useAppDispatch()
     const [draft, setDraft] = useState({
@@ -29,7 +30,7 @@ const Index = () => {
 
 
     return (
-        <div className='max-w-5xl mx-auto space-y-6'>
+        <div className='max-w-app-main mx-auto space-y-6 px-4  lg:px-10 py-10'>
             <header className='flex items-center gap-2'>
                 <span className='flex items-center gap-1 text-sm font-medium text-neutral-600'>
 
@@ -104,6 +105,7 @@ const Index = () => {
                             imageUrl="/assets/Image.jpg"
                             category="Health & Healing"
                                 className='pt-4'
+                                cardType={layout}
                             />
                         </Link>
                         <Link href={`/t/2`}>
@@ -115,6 +117,7 @@ const Index = () => {
                             excerpt="There was so much tension between me and my husband that we barely spoke for weeks..."
                             category="Health & Healing"
                                 className='pt-4'
+                                cardType={layout}
                             />
                         </Link>
 

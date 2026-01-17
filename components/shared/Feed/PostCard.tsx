@@ -10,6 +10,8 @@ import { Bookmark, EyeOff, Flag03, MedicalCross } from "@untitled-ui/icons-react
 import CustomDropDown from "../CustomDropDown"
 import { useState } from "react"
 
+export type CardType = "compact" | "card"
+
 type PostCardProps = {
     readonly author: string
     readonly collaborators?: string
@@ -20,6 +22,7 @@ type PostCardProps = {
     readonly imageUrl?: string
     readonly category?: string
     readonly className?: string
+    readonly cardType?: CardType
 }
 
 export default function PostCard({
@@ -31,8 +34,11 @@ export default function PostCard({
     excerpt,
     imageUrl,
     category,
-    className
+    className,
+    cardType
 }: PostCardProps) {
+    const isCompact = cardType === "compact"
+    const isCard = cardType === "card"
     const [action, setAction] = useState<string | null>(null)
 
     const handleAction = (action: string) => {
@@ -42,6 +48,19 @@ export default function PostCard({
     return (
         <article className={cn("w-full max-w-full flex items-start gap-2 border-t  ", className)}>
             {/* Header */}
+            <div className={cn("overflow-hidden ", isCompact ? "mr-2 h-14 w-18" : "hidden")}>
+                {imageUrl && (
+                    <Image
+                        src={imageUrl}
+                        alt={title}
+                        width={72}
+                        height={56}
+                        className="h-auto w-full object-cover max-w-129.5 rounded-lg"
+                        priority
+                    />
+                )}
+            </div>
+
             <Image
                         src={avatarUrl}
                         alt={author}
@@ -90,7 +109,7 @@ export default function PostCard({
                             },
                         ]}
                         renderTrigger={(selected) => (
-                            <button className="text-gray-400 hover:text-gray-600 rotate-90 relative z-50">•••</button>
+                            <button className="text-gray-400 hover:text-gray-600 rotate-90 relative z-10">•••</button>
                         )}
                         contentClassName="min-w-[180px]"
                     />
@@ -109,9 +128,11 @@ export default function PostCard({
 
             {/* Title */}
                 <h2 className="mt-3 text-lg font-semibold text-neutral-800">{title}</h2>
+                <div className="max-w-[70%]">
+
 
             {/* Image */}
-            {imageUrl && (
+                    {imageUrl && isCard && (
                 <div className="mt-3 overflow-hidden">
                     <Image
                         src={imageUrl}
@@ -128,12 +149,13 @@ export default function PostCard({
                 <p className="mt-3 text-sm text-neutral-500 line-clamp-3">{excerpt}</p>
 
             {/* Actions */}
-            <div className="mt-4 flex items-center gap-2">
+                    <div className="mt-4 flex items-center gap-2">
                     <ActionButton label="Celebrate" icon={<CelebrateIcon className="text-neutral-700 dark:text-neutral-700" />} />
                     <ActionButton icon={<ChatCircleIcon className="text-neutral-700 dark:text-neutral-700" />} />
                     <ActionButton icon={<KeyIcon className="text-neutral-700 dark:text-neutral-700" />} className="px-1 py-1 size-7!" />
                     <ActionButton label="Share" icon={<ShareIcon className="text-neutral-700 dark:text-neutral-700" />} />
             </div>
+                </div>
             </section>
         </article>
     )
@@ -141,7 +163,7 @@ export default function PostCard({
 
 function ActionButton({ label, icon, className }: { readonly label?: string; readonly icon?: React.ReactNode; readonly className?: string }) {
     return (
-        <button className={cn(`flex items-center justify-center cursor-pointer gap-1 rounded-full border px-4 py-1 text-sm text-neutral-700 h-7! hover:bg-neutral-50`, className)}>
+        <button className={cn(`flex  relative z-30 items-center justify-center cursor-pointer gap-1 rounded-full border px-4 py-1 text-sm text-neutral-700 h-7! hover:bg-neutral-50`, className)}>
             {icon}
             {label}
         </button>

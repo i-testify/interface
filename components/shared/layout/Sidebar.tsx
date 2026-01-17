@@ -8,6 +8,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { MoonStarIcon } from 'lucide-react'
 import { ChevronRight, HeartHand, InfoCircle } from '@untitled-ui/icons-react'
+import Image from 'next/image'
 
 const getInitialTheme = (): "light" | "dark" => {
     if (typeof window === "undefined") return "light"
@@ -42,9 +43,9 @@ const Sidebar = () => {
     }
 
     return (
-        <div className='border max-w-fit  py-7 border-t-0 h-full flex-1 relative flex flex-col justify-between'>
+        <div className='border max-w-75  py-7 border-t-0 h-full flex-1 relative flex flex-col justify-between'>
             <Button
-                className="rounded-full size-8 p-2 flex items-center justify-center absolute -right-4 top-7 bg-neutral-25 dark:bg-neutral-25"
+                className="rounded-full size-8 p-2 flex items-center justify-center absolute -right-4 top-7 bg-neutral-25 dark:bg-neutral-25 z-50"
                 variant="outline"
             >
                 <SidebarToggleIcon />
@@ -68,7 +69,18 @@ const Sidebar = () => {
             </ul>
 
                 <section className='border-y py-4 px-5 mt-4'>
-                    <h4 className='p-2 flex items-center gap-2.5'>Fellowships <ChevronRight /> </h4>
+                    <h4 className='p-2 flex items-center gap-2 uppercase text-xs font-medium text-neutral-600'>Fellowships <ChevronRight className='size-5' /> </h4>
+
+                    <ul className='space-y-1'>
+                        {
+                            FELLOWSHIPS_DATA.map((fellowship) => (
+                                <Link href={`/fellowships/${fellowship.slug}`} key={fellowship.id} className='flex px-3 py-2 items-center gap-3.5'>
+                                    <Image src={fellowship.image} alt={fellowship.name} height={20} width={20} />
+                                    <p className='text-neutral-800 font-medium text-sm truncate'>{fellowship.name}</p>
+                                </Link>
+                            ))
+                        }
+                    </ul>
                 </section>
 
                 <section className='px-4 py-4'>
@@ -109,3 +121,57 @@ const Sidebar = () => {
 }
 
 export default Sidebar
+
+
+
+export interface FellowshipProp {
+    id: number;
+    name: string;
+    slug: string;
+    image: string
+}
+
+export const FELLOWSHIPS_DATA: FellowshipProp[] = [
+    {
+        id: 1,
+        name: "The Redeemed Christian Church",
+        slug: "redeem-christian-church",
+        image: "/assets/fellowships/redeem.svg"
+    },
+    {
+        id: 2,
+        name: "Living Faith Church Worldwide",
+        slug: "living-faith-church",
+        image: "/assets/fellowships/living-faith.svg"
+    },
+    {
+        id: 3,
+        name: "Deeper Life Bible Church",
+        slug: "deeper-life-church",
+        image: "/assets/fellowships/deeper-life.svg"
+    },
+    {
+        id: 4,
+        name: "Christ Embassy",
+        slug: "christ-embassy",
+        image: "/assets/fellowships/christ-embassy.svg"
+    },
+    {
+        id: 5,
+        name: "Dunamis International Gospel Centre",
+        slug: "dunamis-international",
+        image: "/assets/fellowships/dunamis.svg"
+    },
+    {
+        id: 6,
+        name: "Daystar Christian Centre",
+        slug: "daystar-christian-center",
+        image: "/assets/fellowships/daystar.svg"
+    },
+    {
+        id: 7,
+        name: "The Elevation Church",
+        slug: "elevation-church",
+        image: "/assets/fellowships/elevation-church.svg"
+    },
+]
