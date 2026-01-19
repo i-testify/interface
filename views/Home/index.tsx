@@ -1,21 +1,25 @@
 'use client'
-import { CustomDropDown, PostCard } from '@/components/shared'
+import { FeedSorting, PostCard } from '@/components/shared'
 import { TestimonyComposer } from '@/components/Testimony'
 import { Button } from '@/components/ui/button'
-import { Briefcase01, ChevronDown, ChevronRightDouble, CoinsStacked03, Heart, HeartSquare, MedicalCross, Plane, Plus, Rows02, Rows03, TrendUp01 } from '@untitled-ui/icons-react'
+import { Briefcase01, ChevronRightDouble, CoinsStacked03, Heart, HeartSquare, MedicalCross, Plane, Plus, TrendUp01 } from '@untitled-ui/icons-react'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { toggleTestimonyModal } from '@/Redux/Slices/testimonySlice'
 import { useAppDispatch } from '@/Redux/store'
 import Link from 'next/link'
+import { CardType } from '@/components/shared/Feed/PostCard'
+import useInViewport from '@/hooks/useInViewPort'
+import { updateShowNavTestimonyButton } from '@/Redux/Slices/appSlice'
 
 
 const Index = () => {
     const [sortBy, setSortBy] = useState<"trending" | "new" | "top">("trending")
-    const [layout, setLayout] = useState<"card" | "compact">("card")
-
+    const [layout, setLayout] = useState<CardType>("card")
+    const { ref, isInViewport } = useInViewport<HTMLButtonElement>();
     const dispatch = useAppDispatch()
+
     const [draft, setDraft] = useState({
         fellowshipId: "",
         title: '',
@@ -27,63 +31,28 @@ const Index = () => {
         dispatch(toggleTestimonyModal())
     }
 
+    useEffect(() => {
+        if (isInViewport) {
+            dispatch(updateShowNavTestimonyButton(false))
+        } else {
+            dispatch(updateShowNavTestimonyButton(true))
+
+        }
+    }, [isInViewport])
+
 
     return (
-        <div className='max-w-5xl mx-auto space-y-6'>
-            <header className='flex items-center gap-2'>
-                <span className='flex items-center gap-1 text-sm font-medium text-neutral-600'>
+        <div className='max-w-app-main mx-auto space-y-6 px-4  lg:px-10 py-10'>
+            <FeedSorting
+                sortBy={sortBy}
+                setLayout={setLayout}
+                layout={layout}
+                setSortBy={setSortBy}
+            />
 
-                    <CustomDropDown
-                        value={sortBy}
-                        onChange={setSortBy}
-                        items={[
-                            { value: "trending", label: "Trending" },
-                            { value: "new", label: "New" },
-                            { value: "top", label: "Top" },
-                        ]}
-                        renderTrigger={(selected) => (
-                            <div className="flex items-center gap-0.5 text-sm font-medium text-neutral-900 min-w-22 cursor-pointer">
-                                {selected?.label ?? "Trending"}
-                                <ChevronDown />
-                            </div>
-                        )}
-                        contentClassName="min-w-[200px]"
-                    />
-
-
-                </span>
-                <span className='flex items-center gap-1 text-sm font-medium text-neutral-600'>
-
-                    <CustomDropDown
-                        value={layout}
-                        onChange={setLayout}
-                        items={[
-                            {
-                                value: "card",
-                                icon: <Rows02 />,
-                                label: <>Card</>,
-                            },
-                            {
-                                value: "compact",
-                                icon: <Rows03 />,
-                                label: <>Compact</>,
-                            },
-                        ]}
-                        renderTrigger={(selected) => (
-                            <div className="flex h-12  items-center gap-0.5 text-sm font-medium text-neutral-900 cursor-pointer" >
-                                {selected?.icon}
-                                <ChevronDown />
-                            </div>
-                        )}
-                        contentClassName="min-w-[180px]"
-                    />
-
-
-                </span>
-            </header>
             <div className='grid grid-cols-[1fr_343px] gap-6'>
                 <main className='w-full'>
-                    <button onClick={handleCreateTestimony} className='mb-6 w-full flex items-center justify-between px-4 border   max-w-full! bg-neutral-50 rounded-2xl h-16!' >
+                    <button ref={ref} onClick={handleCreateTestimony} className='mb-6 w-full flex items-center justify-between px-4 border   max-w-full! bg-neutral-50 rounded-2xl h-16!' >
                         <div className='flex items-center gap-2'>
                             <Image src='/assets/Avatars Default with Backdrop.svg' alt='smile icon' width={32} height={32} className='rounded-full mr-2' />
                             <span className='text-neutral-600 text-sm'>What are you grateful for?</span>
@@ -104,6 +73,7 @@ const Index = () => {
                             imageUrl="/assets/Image.jpg"
                             category="Health & Healing"
                                 className='pt-4'
+                                cardType={layout}
                             />
                         </Link>
                         <Link href={`/t/2`}>
@@ -115,6 +85,7 @@ const Index = () => {
                             excerpt="There was so much tension between me and my husband that we barely spoke for weeks..."
                             category="Health & Healing"
                                 className='pt-4'
+                                cardType={layout}
                             />
                         </Link>
 

@@ -47,6 +47,11 @@
 
 
 
+
+  --spacing-app-main: 957px;
+
+
+
   --color-grey-100: #0D0D0D;
 
   --color-success-60: #248F36;
@@ -58,6 +63,8 @@
 
 
   --color-blue-60: #007AFF;
+
+  --color-yellow-50: #FFFAC5;
 
 
   --color-neutral-25: var(--neutral-25);
@@ -119,6 +126,12 @@
   --neutral-800: #181B25;
   --neutral-900: #0E121B;
 
+    --gradient-1-start: #FFFAC5;
+  --gradient-1-mid: #FFFFFF;
+
+    --gradient-2-start: #FFFAC5;
+  --gradient-2-mid: #FFFFFF;
+
 
 }
 
@@ -166,6 +179,12 @@
   --neutral-700: #E6EDF3;
   --neutral-800: #F0F6FC;
   --neutral-900: #FFFFFF;
+
+    --gradient-1-start: #EBFAED;
+  --gradient-1-mid: #FFFFFF;
+
+    --gradient-2-start: #1F1F1F;
+  --gradient-2-mid: #0F0F0F;
 
 }
 

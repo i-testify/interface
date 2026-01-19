@@ -1,6 +1,7 @@
 export interface AppState {
     isAppMenuOpen: boolean;
     googleAuthLoading: boolean;
-    showLoginModal: boolean;
-
+    showAuthModal: boolean;
+    showNavTestimonyButton: boolean
+    showAboutModal: boolean
 }

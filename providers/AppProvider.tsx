@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import QueryProvider from './QueryProvider'
 import ReduxProvider from './ReduxProvider'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AboutItestify } from '@/components/About';
 
 interface Props {
     children: ReactNode
@@ -19,13 +20,14 @@ const AppProvider = ({ children }: Props) => {
                         <main className="flex flex-1 overflow-hidden">
                             <Sidebar />
 
-                            <section className="flex-1 overflow-y-auto px-4 relative lg:px-10 py-10">
+                            <section className="flex-1 overflow-y-auto relative  ">
                                 {children}
                                 <div className='h-16'></div>
                             </section>
 
                         </main>
                         <AuthModal />
+                        <AboutItestify />
                     </div>
                 </ReduxProvider>
             </QueryProvider>

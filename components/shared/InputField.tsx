@@ -14,6 +14,7 @@ interface Props extends React.ComponentProps<"input"> {
     readonly groupClassName?: string
     readonly inputClassName?: string
     readonly error?: string
+    readonly rightLabel?: ReactNode
 }
 const InputField = forwardRef<HTMLInputElement, Props>(
     (
@@ -27,6 +28,7 @@ const InputField = forwardRef<HTMLInputElement, Props>(
             inputClassName,
             required,
             error,
+            rightLabel,
             ...props
         },
         ref
@@ -34,8 +36,11 @@ const InputField = forwardRef<HTMLInputElement, Props>(
     return (
         <div className={cn("grid w-full max-w-sm gap-1", groupClassName)}>
             {label && (
-                <label className="text-sm font-medium text-neutral-600">
+                <label className="text-sm font-medium text-neutral-600 flex w-full items-center justify-between ">
+                    <span>
                     {label} {required && "*"}
+                    </span>
+                    {rightLabel}
                 </label>
             )}
 

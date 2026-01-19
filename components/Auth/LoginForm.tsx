@@ -46,10 +46,12 @@ const LoginForm = ({ handleSetAuthMethod }: FormProps) => {
                         type='password'
                         preIcon={<Lock01 />}
                         label={
-                            <div className='flex items-center w-full justify-between'>
                                 <span>Your password</span>
+                        }
+                        rightLabel={
+
                                 <Button variant="link" className='text-xs underline underline-offset-1'>Forgot password?</Button>
-                            </div>
+
                         }
                         placeholder='Enter your password'
                         className='bg-neutral-100 h-12 w-full rounded-2xl'
