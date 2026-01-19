@@ -5,8 +5,9 @@ import { AppState } from "../Interfaces/app";
 const initialState: AppState = {
     isAppMenuOpen: false,
     googleAuthLoading: false,
-    showLoginModal: false,
+    showAuthModal: false,
     showNavTestimonyButton: false,
+    showAboutModal: false
 };
 
 const appSlice = createSlice({
@@ -19,8 +20,11 @@ const appSlice = createSlice({
         updateGoogleAuthLoading: (state, action: PayloadAction<boolean>) => {
             state.googleAuthLoading = action.payload
         },
-        toggleShowLoginModal: (state, action: PayloadAction<boolean>) => {
-            state.showLoginModal = action.payload
+        toggleShowAuthModal: (state, action: PayloadAction<boolean>) => {
+            state.showAuthModal = action.payload
+        },
+        toggleShowAboutModal: (state, action: PayloadAction<boolean>) => {
+            state.showAboutModal = action.payload
         },
         updateShowNavTestimonyButton: (state, action: PayloadAction<boolean>) => {
             state.showNavTestimonyButton = action.payload
@@ -31,8 +35,9 @@ const appSlice = createSlice({
 export const
     { toggleAppMenu,
         updateGoogleAuthLoading,
-        toggleShowLoginModal,
-        updateShowNavTestimonyButton
+        toggleShowAuthModal,
+        updateShowNavTestimonyButton,
+        toggleShowAboutModal
     } = appSlice.actions;
 
 export default appSlice.reducer;

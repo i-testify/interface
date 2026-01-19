@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import QueryProvider from './QueryProvider'
 import ReduxProvider from './ReduxProvider'
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AboutItestify } from '@/components/About';
 
 interface Props {
     children: ReactNode
@@ -26,6 +27,7 @@ const AppProvider = ({ children }: Props) => {
 
                         </main>
                         <AuthModal />
+                        <AboutItestify />
                     </div>
                 </ReduxProvider>
             </QueryProvider>

@@ -1,7 +1,7 @@
 'use client'
 import React, { useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '@/Redux/store'
-import CustomDialog from './CustomDialog'
+import CustomDialog from '../shared/Modals/CustomDialog'
 import { GoogleLogin } from '@react-oauth/google';
 import { setActiveAuthMethod, toggleAuthModal } from '@/Redux/Slices/authSlice'
 import { ActiveAuthModal } from '@/Redux/Interfaces/auth'
@@ -101,7 +101,7 @@ const LoginModal = () => {
             title={modalData.title}
             description={modalData.description}
             titleClassName=''
-            contentClassName={cn('md:max-w-[622px] rounded-[30px] gap-0 p-8', isJoinCommunity && "bg-[linear-gradient(180deg,#EBFAED_0%,#FFFFFF_44%),url('/assets/Mosaic.png')] bg-repeat bg-contain bg-center md:max-w-[803px]!")}
+            contentClassName={cn('md:max-w-[622px] rounded-[30px] gap-0 p-8', isJoinCommunity && "bg-[linear-gradient(180deg,var(--gradient-1-start)_0%,var(--gradient-1-start)_44%),url('/assets/Mosaic.png')] bg-repeat bg-contain bg-center md:max-w-[803px]!")}
             headerClassName='flex flex-col items-center text-center mb-4 max-w-[400px] mx-auto gap-2'
             showCloseButton={!isVerifyEmail && !isCompleteProfile}
             customHeader={customHeader}

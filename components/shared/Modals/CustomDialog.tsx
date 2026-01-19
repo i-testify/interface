@@ -29,7 +29,7 @@ const CustomDialog = ({ isOpen, onClose, title, description, children, contentCl
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose} >
-            <DialogContent className={cn('p-12', contentClassName)} showCloseButton={showCloseButton}>
+            <DialogContent className={cn('p-12 max-h-[85vh]', contentClassName)} showCloseButton={showCloseButton}>
                 <div>
                     {customHeader}
                 </div>

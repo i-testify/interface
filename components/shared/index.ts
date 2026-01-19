@@ -1,7 +1,7 @@
 export { default as Navbar } from './layout/Navbar'
 export { default as Sidebar } from './layout/Sidebar'
 export { default as ITestifyLogo } from './Logo/ItestifyLogo'
-export { default as AuthModal } from './Modals/AuthModal'
+export { default as AuthModal } from '../Auth/AuthModal'
 export { default as LoadingSpinner } from './Loaders/LoadingSpinner'
 export { default as InputField } from './InputField'
 export { default as TextAreaField } from './TextAreaField'
