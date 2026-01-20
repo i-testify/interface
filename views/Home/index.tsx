@@ -92,7 +92,7 @@ const Index = () => {
 
                     </ul>
                 </main>
-                <aside className='border rounded-2xl p-4  sticky top-2 h-fit'>
+                <aside className='border md:block hidden rounded-2xl p-4  sticky top-2 h-fit'>
                     <h3 className='flex items-center gap-2 text-blue-60 text-sm font-medium'> <TrendUp01 /> Trending Fellowships</h3>
 
                     <ul className='mt-4'>

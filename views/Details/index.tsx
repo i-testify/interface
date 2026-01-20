@@ -16,7 +16,7 @@ const Index = ({ testimonyId }: Props) => {
     const [value, setValue] = useState("")
     const expanded = focused || value.length > 0
     return (
-        <div className='space-y-8'>
+        <div className='space-y-8 py-10'>
 
             <button onClick={() => router.back()} className='flex items-center gap-2 '>
                 <ArrowLeft /> Go Back

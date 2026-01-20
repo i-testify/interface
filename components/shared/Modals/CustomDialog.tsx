@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog"
 import { cn } from '@/lib/utils'
 
-
 interface Props {
     isOpen: boolean
     onClose: () => void

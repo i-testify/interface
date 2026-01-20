@@ -23,7 +23,7 @@ const Sidebar = () => {
     }
 
     return (
-        <div className='border max-w-75  py-7 border-t-0 h-full flex-1 relative flex flex-col justify-between'>
+        <div className='hidden border-r max-w-75  py-7 border-t-0 h-full flex-1 relative md:flex flex-col justify-between'>
             <Button
                 className="rounded-full size-8 p-2 flex items-center justify-center absolute -right-4 top-7 bg-neutral-25 dark:bg-neutral-25 z-50"
                 variant="outline"
