@@ -5,15 +5,16 @@ import { CustomDropDown, InputField, ITestifyLogo } from '..'
 import { Search } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/Redux/store'
 import { toggleAuthModal } from '@/Redux/Slices/authSlice'
-import AlertIcon from '@/components/shared/Icons/interface-alert-alarm-bell-2--alert-bell-ring-notification-alarm.svg'
 import { ChevronDown, User03 } from '@untitled-ui/icons-react'
 import Image from 'next/image'
+import { AlertIcon } from '../Icons'
 
 
 
 const Navbar = () => {
     const { showNavTestimonyButton } = useAppSelector((state) => state.app)
     const [accountAction, setAccountAction] = useState<"profile" | "logout" | null>(null)
+    const isAuth = false
 
     const username = "@samsontobie"
     const dispatch = useAppDispatch()
@@ -28,16 +29,21 @@ const Navbar = () => {
 
 
     return (
-        <div className='border-b  w-full min-h-18 px-8 flex justify-between items-center gap-4'>
+        <div className='border-b  w-full min-h-18 px-4 md:px-8 flex justify-between items-center gap-4'>
             <div className='flex-1'>
 
             <ITestifyLogo />
             </div>
-            <div className='flex-1'>
+            <div className='flex-1 hidden md:flex justify-center'>
 
             <InputField placeholder="Search for anything..." className='bg-neutral-100 h-10' preIcon={<Search />} />
             </div>
-            <section className='flex items-center gap-2 flex-1'>
+            <section className='flex items-center justify-end gap-2 md:flex-1'>
+                {
+                    isAuth ?
+
+
+                        <div className='md:flex items-center gap-2 flex-1 hidden'>
                 <Activity mode={showNavTestimonyButton ? "visible" : "hidden"}  >
                     <Button className='rounded-[14px]'>
                         <Image src="/assets/fellowships/write_circle.svg" alt="edit--pen" height={14} width={14} />
@@ -46,7 +52,7 @@ const Navbar = () => {
                 </Activity>
 
                 <button className='rounded-full border size-10 shrink-0 flex items-center justify-center'>
-                    <AlertIcon className='text-neutral-800' />
+                                <AlertIcon />
                 </button>
                 <User03 />
                 <p>{username}</p>
@@ -75,9 +81,12 @@ const Navbar = () => {
                     )}
                     contentClassName="min-w-[120px]"
                 />
+                        </div>
 
+                        :
 
             <Button onClick={handleLoginClick} className='bg-neutral-100 hover:bg-neutral-100 cursor-pointer text-neutral-800 text-sm font-medium rounded-[14px]'>Log in</Button>
+                }
             </section>
         </div>
     )

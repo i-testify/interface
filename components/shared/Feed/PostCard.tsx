@@ -1,10 +1,7 @@
 // components/PostCard.tsx
 'use client'
 import Image from "next/image"
-import ShareIcon from "@/components/shared/Icons/ShareIcon.svg"
-import CelebrateIcon from "@/components/shared/Icons/celebrate-icon.svg"
-import ChatCircleIcon from "@/components/shared/Icons/chat-circle.svg"
-import KeyIcon from "@/components/shared/Icons/key-01.svg"
+import { CelebrateIcon, ChatCircle, KeyIcon, ShareIcon } from "../Icons"
 import { cn } from "@/lib/utils"
 import { Bookmark, EyeOff, Flag03, MedicalCross } from "@untitled-ui/icons-react"
 import CustomDropDown from "../CustomDropDown"
@@ -39,7 +36,7 @@ export default function PostCard({
     className,
     imageClassName,
     bodyClassName,
-    cardType
+    cardType = "card"
 }: PostCardProps) {
     const isCompact = cardType === "compact"
     const isCard = cardType === "card"
@@ -66,28 +63,28 @@ export default function PostCard({
             </div>
 
             <Image
-                        src={avatarUrl}
-                        alt={author}
+                src={avatarUrl}
+                alt={author}
                 width={32}
                 height={32}
                 className="rounded-full shrink-0"
-                    />
+            />
             <section>
 
 
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
 
-                    <div className="text-sm flex gap-2 items-center">
+                        <div className="text-sm flex gap-2 items-center">
                             <span className="font-medium text-neutral-900">
-                            {author}
-                            {collaborators && (
-                                <span className="text-gray-500"> and {collaborators}</span>
-                            )}
-                        </span>
-                        <div className="text-gray-400">{time}</div>
+                                {author}
+                                {collaborators && (
+                                    <span className="text-gray-500"> and {collaborators}</span>
+                                )}
+                            </span>
+                            <div className="text-gray-400">{time}</div>
+                        </div>
                     </div>
-                </div>
 
 
                     <CustomDropDown
@@ -118,47 +115,47 @@ export default function PostCard({
                         contentClassName="min-w-[180px]"
                     />
 
-            </div>
+                </div>
 
-            {/* Category */}
-            {category && (
-                <div className="mt-3 flex items-center gap-2 text-sm text-green-600">
+                {/* Category */}
+                {category && (
+                    <div className="mt-3 flex items-center gap-2 text-sm text-green-600">
                         <span className="text-lg">
                             <MedicalCross />
                         </span>
-                    <span>{category}</span>
-                </div>
-            )}
+                        <span>{category}</span>
+                    </div>
+                )}
 
-            {/* Title */}
+                {/* Title */}
                 <h2 className="mt-3 text-lg font-semibold text-neutral-800">{title}</h2>
-                <div className={cn("max-w-[70%]", bodyClassName)}>
+                <div className={cn("", bodyClassName)}>
 
 
-            {/* Image */}
+                    {/* Image */}
                     {imageUrl && isCard && (
-                <div className="mt-3 overflow-hidden">
-                    <Image
-                        src={imageUrl}
-                        alt={title}
-                        width={518}
-                        height={420}
-                                className={cn("h-auto w-full object-cover max-w-129.5 rounded-lg", imageClassName)}
-                        priority
-                    />
-                </div>
-            )}
+                        <div className="mt-3 overflow-hidden">
+                            <Image
+                                src={imageUrl}
+                                alt={title}
+                                width={518}
+                                height={420}
+                                className={cn("h-auto w-full object-cover  rounded-lg", imageClassName)}
+                                priority
+                            />
+                        </div>
+                    )}
 
-            {/* Excerpt */}
-                <p className="mt-3 text-sm text-neutral-500 line-clamp-3">{excerpt}</p>
+                    {/* Excerpt */}
+                    <p className="mt-3 text-sm text-neutral-500 line-clamp-3">{excerpt}</p>
 
-            {/* Actions */}
+                    {/* Actions */}
                     <div className="mt-4 flex items-center gap-2">
-                    <ActionButton label="Celebrate" icon={<CelebrateIcon className="text-neutral-700 dark:text-neutral-700" />} />
-                    <ActionButton icon={<ChatCircleIcon className="text-neutral-700 dark:text-neutral-700" />} />
-                    <ActionButton icon={<KeyIcon className="text-neutral-700 dark:text-neutral-700" />} className="px-1 py-1 size-7!" />
-                    <ActionButton label="Share" icon={<ShareIcon className="text-neutral-700 dark:text-neutral-700" />} />
-            </div>
+                        <ActionButton label="Celebrate" icon={<CelebrateIcon className="text-neutral-700 dark:text-neutral-700" />} />
+                        <ActionButton icon={<ChatCircle className="text-neutral-700 dark:text-neutral-700" />} />
+                        <ActionButton icon={<KeyIcon className="text-neutral-700 dark:text-neutral-700" />} className="px-1 py-1 size-7!" />
+                        <ActionButton label="Share" icon={<ShareIcon className="text-neutral-700 dark:text-neutral-700" />} />
+                    </div>
                 </div>
             </section>
         </article>
