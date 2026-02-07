@@ -8,24 +8,57 @@ import Link from 'next/link'
 import { ChevronRight, HeartHand, InfoCircle } from '@untitled-ui/icons-react'
 import Image from 'next/image'
 import ColorModeToggle from './ColorModeToggle'
-import { useAppDispatch } from '@/Redux/store'
-import { toggleShowAboutModal } from '@/Redux/Slices/appSlice'
+import { useAppDispatch, useAppSelector } from '@/Redux/store'
+import { toggleAppMenu, toggleShowAboutModal } from '@/Redux/Slices/appSlice'
 
 
 
 const Sidebar = () => {
     const pathname = usePathname()
     const activeFellowshipSlug = pathname.split("/")[2]
+    const { isAppMenuOpen } = useAppSelector((state) => state.app)
     const dispatch = useAppDispatch()
 
     const showAboutModal = () => {
         dispatch(toggleShowAboutModal(true))
     }
 
+    const closeMenu = () => {
+        dispatch(toggleAppMenu())
+    }
+
     return (
-        <div className='hidden border-r max-w-75  py-7 border-t-0 h-full flex-1 relative md:flex flex-col justify-between'>
+        <>
+            {/* ===== Mobile Backdrop ===== */}
+            {isAppMenuOpen && (
+                <div
+                    onClick={closeMenu}
+                    className="
+          absolute inset-0 z-30
+          bg-black/40 backdrop-blur-sm
+          md:hidden
+        "
+                />
+            )}
+            <div
+                className={cn(
+                    " z-40 absolute md:relative top-0 h-full border-r bg-neutral-25 py-7 flex flex-col justify-between overflow-hidden md:overflow-visible",
+
+                    // animate width instead of translate
+                    "transition-all duration-300 ease-in-out",
+
+                    // state
+                    isAppMenuOpen ? "w-78 " : "w-0 md:relative",
+
+                    // desktop always visible
+                    "md:w-78"
+                )}
+            >
+
+
+
             <Button
-                className="rounded-full size-8 p-2 flex items-center justify-center absolute -right-4 top-7 bg-neutral-25 dark:bg-neutral-25 z-50"
+                    className="rounded-full hidden md:flex size-8 p-2  items-center justify-center absolute -right-4 top-7 bg-neutral-25 dark:bg-neutral-25 z-50"
                 variant="outline"
             >
                 <SidebarToggleIcon />
@@ -93,6 +126,7 @@ const Sidebar = () => {
 
             </section>
         </div>
+        </>
     )
 }
 

@@ -4,8 +4,7 @@ import React, { useMemo, useState } from 'react'
 import { Button } from '../ui/button'
 import { FELLOWSHIPS_DATA } from '../shared/layout/Sidebar'
 import { CustomDropDown } from '../shared'
-import { Bell03, BellOff03, Flag03, Heart, NotificationBox } from '@untitled-ui/icons-react'
-import { AlarmClockOff } from 'lucide-react'
+import { Bell03, BellOff03, Flag03, Heart } from '@untitled-ui/icons-react'
 
 interface Props {
     fellowshipId: string
@@ -26,6 +25,7 @@ const FellowshipHeader = ({ fellowshipId }: Props) => {
 
     const handleAction = (action: string) => {
         console.log(action)
+        setAction(action)
 
     }
 
@@ -36,7 +36,7 @@ const FellowshipHeader = ({ fellowshipId }: Props) => {
                 <h3 className='text-xl font-bold text-neutral-800'>{activeFellowship?.name}</h3>
                 <p className='flex items-center gap-2 text-sm font-medium text-neutral-600'>
                     <span>20.5k Witnesses</span>
-                    •
+                    <span aria-hidden className='mx-2'>•</span>
                     <span>100k Testimonies</span>
                 </p>
             </div>
@@ -75,7 +75,7 @@ const FellowshipHeader = ({ fellowshipId }: Props) => {
                         {
                             value: "favourites",
                             icon: <Heart />,
-                            label: <>Add to favourites</>,
+                            label: <>Add to favorites</>,
 
                         },
                         {
@@ -86,7 +86,7 @@ const FellowshipHeader = ({ fellowshipId }: Props) => {
 
                     ]}
                     renderTrigger={(selected) => (
-                        <button className="text-grey-100 bg-white rounded-full size-10 border shadow relative z-10">•••</button>
+                        <button className="text-grey-100 bg-neutral-25 rounded-full size-10 border shadow relative z-10">•••</button>
                     )}
                     contentClassName="min-w-[200px]"
                 />
