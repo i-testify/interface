@@ -5,19 +5,20 @@ import { CustomDropDown, InputField, ITestifyLogo } from '..'
 import { Search } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '@/Redux/store'
 import { toggleAuthModal } from '@/Redux/Slices/authSlice'
-import { ChevronDown, User03 } from '@untitled-ui/icons-react'
+import { ChevronDown, Menu05, User03 } from '@untitled-ui/icons-react'
 import Image from 'next/image'
-import { AlertIcon } from '../Icons'
+import { AlertIcon, CloseIcon } from '../Icons'
+import { toggleAppMenu } from '@/Redux/Slices/appSlice'
 
 
 
 const Navbar = () => {
-    const { showNavTestimonyButton } = useAppSelector((state) => state.app)
+    const dispatch = useAppDispatch()
+    const { showNavTestimonyButton, isAppMenuOpen } = useAppSelector((state) => state.app)
     const [accountAction, setAccountAction] = useState<"profile" | "logout" | null>(null)
     const isAuth = false
 
     const username = "@samsontobie"
-    const dispatch = useAppDispatch()
 
     const handleLoginClick = () => {
         dispatch(toggleAuthModal())
@@ -27,6 +28,9 @@ const Navbar = () => {
         console.log("i signed out")
     }
 
+    const toggleMenu = () => {
+        dispatch(toggleAppMenu())
+    }
 
     return (
         <div className='border-b  w-full min-h-18 px-4 md:px-8 flex justify-between items-center gap-4'>
@@ -85,7 +89,18 @@ const Navbar = () => {
 
                         :
 
-            <Button onClick={handleLoginClick} className='bg-neutral-100 hover:bg-neutral-100 cursor-pointer text-neutral-800 text-sm font-medium rounded-[14px]'>Log in</Button>
+                        <div className='flex items-center gap-2'>
+
+                            <Button onClick={handleLoginClick} className='bg-neutral-100 hover:bg-neutral-100 cursor-pointer text-neutral-800 text-sm font-medium rounded-md h-10'>Log in</Button>
+
+                            <Button onClick={toggleMenu} className='bg-neutral-100 md:hidden hover:bg-neutral-100 cursor-pointer text-neutral-800 text-base font-medium rounded-md size-10'>
+                                {
+                                    isAppMenuOpen ?
+                                        <CloseIcon />
+                                        : <Menu05 />
+                                }
+                            </Button>
+                        </div>
                 }
             </section>
         </div>

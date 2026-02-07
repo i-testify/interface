@@ -42,7 +42,7 @@ const Index = () => {
 
 
     return (
-        <div className='max-w-app-main mx-auto space-y-6 px-4  lg:px-10 py-10'>
+        <div className='max-w-app-main mx-auto w-full space-y-6 px-4  lg:px-10 py-10'>
             <FeedSorting
                 sortBy={sortBy}
                 setLayout={setLayout}
@@ -50,7 +50,7 @@ const Index = () => {
                 setSortBy={setSortBy}
             />
 
-            <div className='grid grid-cols-[1fr_343px] gap-6'>
+            <div className='grid md:grid-cols-[1fr_343px] md:gap-6'>
                 <main className='w-full'>
                     <button ref={ref} onClick={handleCreateTestimony} className='mb-6 w-full flex items-center justify-between px-4 border   max-w-full! bg-neutral-50 rounded-2xl h-16!' >
                         <div className='flex items-center gap-2'>

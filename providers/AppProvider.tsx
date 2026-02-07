@@ -17,7 +17,7 @@ const AppProvider = ({ children }: Props) => {
                 <ReduxProvider>
                     <div className="flex h-svh flex-col overflow-hidden">
                         <Navbar />
-                        <main className="flex flex-1 overflow-hidden">
+                        <main className="flex flex-1 overflow-hidden relative">
                             <Sidebar />
 
                             <section className="flex-1 overflow-y-auto relative  ">

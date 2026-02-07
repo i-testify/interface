@@ -49,37 +49,43 @@ export default function PostCard({
     return (
         <article className={cn("w-full max-w-full flex items-start gap-2 border-t  ", className)}>
             {/* Header */}
-            <div className={cn("overflow-hidden ", isCompact ? "mr-2 h-14 w-18" : "hidden")}>
+            <div
+                className={cn(
+                    isCompact && imageUrl
+                        ? "mr-2 h-14 w-18 shrink-0 overflow-hidden rounded-lg"
+                        : "hidden"
+                )}
+            >
+
                 {imageUrl && (
                     <Image
                         src={imageUrl}
                         alt={title}
                         width={72}
                         height={56}
-                        className="h-auto w-full object-cover max-w-129.5 rounded-lg"
+                        className="h-auto w-full object-cover rounded-lg"
                         priority
                     />
                 )}
             </div>
 
-            <Image
-                src={avatarUrl}
-                alt={author}
-                width={32}
-                height={32}
-                className="rounded-full shrink-0"
-            />
-            <section>
+            <section className="w-full min-w-0">
 
-
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-3">
+                        <Image
+                            src={avatarUrl}
+                            alt={author}
+                            width={32}
+                            height={32}
+                            className="rounded-full shrink-0"
+                        />
 
                         <div className="text-sm flex gap-2 items-center">
                             <span className="font-medium text-neutral-900">
                                 {author}
                                 {collaborators && (
-                                    <span className="text-gray-500"> and {collaborators}</span>
+                                    <span className="text-gray-500 hidden md:flex"> and {collaborators}</span>
                                 )}
                             </span>
                             <div className="text-gray-400">{time}</div>
@@ -110,9 +116,9 @@ export default function PostCard({
                             },
                         ]}
                         renderTrigger={(selected) => (
-                            <button className="text-gray-400 hover:text-gray-600 rotate-90 relative z-10">•••</button>
+                            <button className="text-gray-400 hover:text-gray-600 rotate-90 relative z-30">•••</button>
                         )}
-                        contentClassName="min-w-[180px]"
+                        contentClassName="min-w-[180px] z-30"
                     />
 
                 </div>
@@ -128,10 +134,8 @@ export default function PostCard({
                 )}
 
                 {/* Title */}
-                <h2 className="mt-3 text-lg font-semibold text-neutral-800">{title}</h2>
+                <h2 className="mt-3 text-base md:text-lg font-semibold text-neutral-800 text-wrap">{title}</h2>
                 <div className={cn("", bodyClassName)}>
-
-
                     {/* Image */}
                     {imageUrl && isCard && (
                         <div className="mt-3 overflow-hidden">
@@ -147,10 +151,10 @@ export default function PostCard({
                     )}
 
                     {/* Excerpt */}
-                    <p className="mt-3 text-sm text-neutral-500 line-clamp-3">{excerpt}</p>
+                    <p className="mt-3 text-sm text-neutral-500 line-clamp-3 text-wrap">{excerpt}</p>
 
                     {/* Actions */}
-                    <div className="mt-4 flex items-center gap-2">
+                    <div className="mt-4 flex flex-wrap items-center gap-2">
                         <ActionButton label="Celebrate" icon={<CelebrateIcon className="text-neutral-700 dark:text-neutral-700" />} />
                         <ActionButton icon={<ChatCircle className="text-neutral-700 dark:text-neutral-700" />} />
                         <ActionButton icon={<KeyIcon className="text-neutral-700 dark:text-neutral-700" />} className="px-1 py-1 size-7!" />
